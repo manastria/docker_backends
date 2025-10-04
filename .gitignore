@@ -1,0 +1,11 @@
+# Environment & local overrides
+.env
+.env.local
+*.log
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+# Python cache (if you add tooling later)
+__pycache__/

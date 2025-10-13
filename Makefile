@@ -8,11 +8,12 @@ endif
 
 PROJECT := backends
 
-.PHONY: help network up down restart logs ps validate clean pull host-shim-up host-shim-down host-shim-status
+.PHONY: help network network-rm up down restart logs ps validate clean pull host-shim-up host-shim-down host-shim-status
 
 help:
 	@echo "Cibles disponibles :"
 	@echo "  make network        - Crée le réseau macvlan externe (une fois)"
+	@echo "  make network-rm     - Supprime le réseau macvlan_lan (sans erreur si absent)"
 	@echo "  make up             - Démarre les conteneurs"
 	@echo "  make down           - Arrête les conteneurs"
 	@echo "  make restart        - Redémarre"
@@ -27,6 +28,9 @@ help:
 
 network:
 	@bash scripts/create-macvlan.sh
+
+network-rm:
+	@docker network rm macvlan_lan 2>/dev/null || true
 
 up:
 	docker compose -p $(PROJECT) up -d

@@ -30,7 +30,7 @@ network:
 	@bash scripts/create-macvlan.sh
 
 network-rm:
-	@docker network rm macvlan_lan 2>/dev/null || true
+	@docker network rm macvlan_lan
 
 up:
 	docker compose -p $(PROJECT) up -d
